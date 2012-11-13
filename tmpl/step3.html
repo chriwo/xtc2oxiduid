@@ -1,0 +1,158 @@
+<html>
+<head>
+<title>XTC2OXID</title>
+<style type="text/css"><!--
+
+body {
+ margin:0%;
+ padding:0%;
+ font-family: Verdana, Arial, Helvetica, sans-serif;
+ font-size: 12px;
+ padding-top: 35px;
+  text-align: center;
+}
+
+div#content {
+text-align: left;
+ padding-top: 100px;
+ width: 770;
+ margin: 0 auto; 
+ border: 1px solid #ccc;
+ padding: 15px;
+ background-color: #eee;
+ background-image: url( http://www.oxid-esales.com/files/logo-claim-header.png );
+ background-repeat: no-repeat;
+ background-position:right top;
+}
+
+div#joomlaconsulting {
+ width: 770;
+ margin: 0 auto; 
+ font-size: smaller;
+ float: right;
+ padding-top: 10px;
+ padding-right: 150px;
+}
+
+div#status {
+text-align: left;
+ padding-top: 10px;
+ width: 770;
+ margin: 0 auto; 
+ border: 1px solid #ccc;
+ padding: 15px;
+ background-color: #eee;
+}
+
+div#oxid-container {
+	height: 375px;
+	padding-top: 15px;
+}
+
+.right {
+  float: right;
+  margin-bottom: 5px;
+}
+
+.button {
+	float:right;
+ 	padding:0;
+ 	margin-top: 25;
+	width: 80px;
+	border: 1px solid #000;
+	color: #000; 
+	font-weight: bold;
+}
+
+.button2{
+	float:right;
+ 	padding:0;
+	width: 80px;
+	border: 1px solid #000;
+	color: #000; 
+	font-weight: bold;
+}
+
+//--></style>
+</head>
+<body>
+
+<div id="status">
+	{STATUS}
+</div>
+
+<div id="content">
+					
+		<form name="postForm" id="postForm" method="post" action="index.php">
+		
+			<input type="hidden" name="task" value="migrate" /> 
+
+					
+		<div id="oxid-container">
+					
+			<h2>Migration Settings:</h2>															   
+			<b>Cleanup Database before Import</b>	<select class="right" name="oxid-xtc-dbcleanup">
+							   						<option value="1" selected="selected">yes</option>
+							   						<option value="0">no</option>
+						 						</select><div style="clear: both;"></div>
+						 						
+			<b>Import Customers</b>	<select class="right" name="oxid-import-customers">
+							   						<option value="1" selected="selected">yes</option>
+							   						<option value="0">no</option>
+						 						</select><div style="clear: both;"></div>						 						
+						 						
+			<b>Import Manufacturers</b>	<select class="right" name="oxid-import-manufacturers">
+							   						<option value="1" selected="selected">yes</option>
+							   						<option value="0">no</option>
+						 						</select><div style="clear: both;"></div>	
+						 						
+			<b>Import Categories</b>	<select class="right" name="oxid-import-categories">
+							   						<option value="1" selected="selected">yes</option>
+							   						<option value="0">no</option>
+						 						</select><div style="clear: both;"></div>						 											 						
+						 						
+			<b>Import Products</b>	<select class="right" name="oxid-import-products">
+							   						<option value="1" selected="selected">yes</option>
+							   						<option value="0">no</option>
+						 						</select><div style="clear: both;"></div>	
+						 						
+			<b>Import Products Reviews</b>	<select class="right" name="oxid-import-products-reviews">
+							   						<option value="1" selected="selected">yes</option>
+							   						<option value="0">no</option>
+						 						</select><div style="clear: both;"></div>						 											 						
+						 						
+			<b>Import Products Variants</b>	<select class="right" name="oxid-import-products-variants">
+							   						<option value="1" selected="selected">yes</option>
+							   						<option value="0">no</option>
+						 						</select><div style="clear: both;"></div>						 						
+						 						
+			<b>Import Products Extended Infos</b>	<select class="right" name="oxid-import-products-extended">
+							   						<option value="1" selected="selected">yes</option>
+							   						<option value="0">no</option>
+						 						</select><div style="clear: both;"></div>
+						 						
+			<b>Import Orders</b>	<select class="right" name="oxid-import-orders">
+							   						<option value="1" selected="selected">yes</option>
+							   						<option value="0">no</option>
+						 						</select><div style="clear: both;"></div>						 												 												 						
+						 						
+			<b>Import Images</b>	<select class="right" name="oxid-import-images">
+							   						<option value="1" selected="selected">yes</option>
+							   						<option value="0">no</option>
+						 						</select><div style="clear: both;"></div>						 						
+						 						
+						 											 						
+		<input type="submit" name="executebutton" class="button" value="start" />
+		
+</div>
+			
+	</form>
+			
+</div>
+
+<div id="joomlaconsulting" >
+	html ui is powerd by <a target="_blank" href="http://www.joomlaconsulting.de">JoomlaConsulting.de</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>XTC2OXID</title>
+<style type="text/css"><!--
+
+body {
+ margin:0%;
+ padding:0%;
+ font-family: Verdana, Arial, Helvetica, sans-serif;
+ font-size: 12px;
+ padding-top: 35px;
+  text-align: center;
+}
+
+div#content {
+ text-align: left;
+ padding-top: 100px;
+ width: 770;
+ margin: 0 auto; 
+ border: 1px solid #ccc;
+ padding: 15px;
+ background-color: #eee;
+ background-image: url( http://www.oxid-esales.com/files/logo-claim-header.png );
+ background-repeat: no-repeat;
+ background-position:right top;
+}
+div#joomlaconsulting {
+ width: 770;
+ margin: 0 auto; 
+ font-size: smaller;
+ float: right;
+ padding-top: 10px;
+ padding-right: 150px;
+}
+
+div#status {
+text-align: left;
+ padding-top: 10px;
+ width: 770;
+ margin: 0 auto; 
+ border: 1px solid #ccc;
+ padding: 15px;
+ background-color: #eee;
+}
+
+div#xtc-container {
+	height: 125px;
+	padding-top: 25px;
+}
+
+div#oxid-container {
+	height: 110px;
+	padding-top: 15px;
+}
+
+.right {
+  float: right;
+  margin-bottom: 5px;
+}
+
+.button {
+	float:right;
+ 	padding:0;
+ 	margin-top: 25;
+	width: 80px;
+	border: 1px solid #000;
+	color: #000; 
+	font-weight: bold;
+}
+
+.button2{
+	float:right;
+ 	padding:0;
+	width: 80px;
+	border: 1px solid #000;
+	color: #000; 
+	font-weight: bold;
+}
+
+//--></style>
+</head>
+<body>
+
+<div id="status">
+	{STATUS}
+</div>
+
+<div id="content">
+					
+		<form name="postForm" id="postForm" method="post" action="index.php">
+		
+			<input type="hidden" name="task" value="validate" /> 
+
+			<div id="xtc-container">
+
+				<h2>XT:Commerce Settings:</h2>
+
+					<b>Shop Type:</b> <select class="right" name="oxid-xtc-shoptype">
+						  		   	<option value="xtc" selected="selected">XT:Commerce</option>
+							   	<option value="osc">OS:Commerce</option>
+						 </select> <div style="clear: both;"></div>
+															   													  
+		<b>Database Name:</b> <input  class="right" size="25" type="text" name="oxid-xtc-db" value="{oxid-xtc-db}" /> <div style="clear: both;"></div> 
+		 															   
+		<b>Image Directory:</b> <input class="right" size="45" type="text" name="oxid-xtc-imgdir" value="{oxid-xtc-imgdir}" /> <div style="clear: both;"></div>		
+						
+</div>
+					
+<div id="oxid-container">
+					
+	<h2>OXID Settings:</h2>															   
+		<b>Installation Path of OXID eShop: </b> <input class="right" size="45" type="text" name="oxid-install-dir" value="{oxid-install-dir}" /> <div style="clear: both;"></div>
+						 						
+						 											 						
+		<input type="submit" name="executebutton" class="button" value="start" />
+		
+</div>
+			
+	</form>			
+</div>
+<div id="joomlaconsulting" >
+	html ui is powerd by <a target="_blank" href="http://www.joomlaconsulting.de">JoomlaConsulting.de</a>
+</div>
+
+
+
+</body>
+</html>
