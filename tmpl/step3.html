@@ -91,16 +91,25 @@ div#oxid-container {
 		<div id="oxid-container">
 					
 			<h2>Migration Settings:</h2>															   
-			<b>Cleanup Database before Import</b>	<select class="right" name="oxid-xtc-dbcleanup">
+			<b>Cleanup Database before Import</b><select class="right" name="oxid-xtc-dbcleanup">
 							   						<option value="1" selected="selected">yes</option>
 							   						<option value="0">no</option>
 						 						</select><div style="clear: both;"></div>
-						 						
-			<b>Import Customers</b>	<select class="right" name="oxid-import-customers">
-							   						<option value="1" selected="selected">yes</option>
-							   						<option value="0">no</option>
-						 						</select><div style="clear: both;"></div>						 						
-						 						
+
+			<b>Import Customers</b>
+			<select class="right" name="oxid-import-customers">
+				<option value="1" selected="selected">yes</option>
+				<option value="0">no</option>
+			</select>
+			<div style="clear: both;"></div>
+
+			<b>Import Customers passwords 1:1</b>
+			<select class="right" name="oxid-import-customers-passwords">
+				<option value="1" selected="selected">yes</option>
+				<option value="0">no</option>
+			</select>
+			<div style="clear: both;"></div>
+			
 			<b>Import Manufacturers</b>	<select class="right" name="oxid-import-manufacturers">
 							   						<option value="1" selected="selected">yes</option>
 							   						<option value="0">no</option>
@@ -141,7 +150,6 @@ div#oxid-container {
 							   						<option value="0">no</option>
 						 						</select><div style="clear: both;"></div>						 						
 						 						
-						 											 						
 		<input type="submit" name="executebutton" class="button" value="start" />
 		
 </div>
