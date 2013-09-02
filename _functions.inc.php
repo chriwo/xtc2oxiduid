@@ -352,7 +352,9 @@ class ImportHandler {
 			oxparentid, 
 			oxsort, 
 			oxtitle, 
-			oxthumb
+			oxthumb,
+			0 AS oxpricefrom,
+			0 AS oxpriceto
 			' . $this->_sInclField . ')
 			(
 			SELECT 
