@@ -264,6 +264,9 @@ class ImportHandler {
 
 		$sQ = $delete_from . "oxcategories" . $where_oxshopid;
 		$oxDB->Execute($sQ);
+		
+		$sQ = $delete_from . "oxobject2seodata" . $where_oxshopid;
+		$oxDB->Execute($sQ);
 
 		$sQ = $delete_from . "oxarticles" . $where_oxshopid;
 		$oxDB->Execute($sQ);
@@ -352,9 +355,10 @@ class ImportHandler {
 			oxparentid, 
 			oxsort, 
 			oxtitle, 
+			oxlongdesc,
 			oxthumb,
-			0 AS oxpricefrom,
-			0 AS oxpriceto
+			oxpricefrom,
+			oxpriceto
 			' . $this->_sInclField . ')
 			(
 			SELECT 
@@ -365,7 +369,10 @@ class ImportHandler {
 			parent_id, 
 			sort_order, 
 			categories_name, 
-			categories_image
+			categories_description,
+			categories_image,
+			0,
+			0
 			' . $this->_sInclFieldVal . '
           FROM 
 			' . $sOcmDb . '.categories AS c, 
@@ -402,6 +409,39 @@ class ImportHandler {
 
 		$sQ = "update oxcategories set oxrootid = oxid where oxparentid = 'oxrootid'";
 		$oxDB->Execute($sQ);
+		
+		
+		if ($shopSystem) {
+			// Import SEO
+			$sQ = '
+			REPLACE INTO oxobject2seodata 
+				(
+				oxobjectid, 
+				oxshopid, 
+				oxlang, 
+				oxkeywords,
+				oxdescription)
+				(
+				SELECT 
+				c.categories_id, 
+				' . $oxDB->quote($sShopId) . ', 
+				0,
+				categories_meta_keywords,
+				categories_meta_description
+			  FROM 
+				' . $sOcmDb . '.categories AS c, 
+				' . $sOcmDb . '.categories_description AS cd
+			  WHERE 
+				c.categories_id = cd.categories_id AND 
+				language_id = ' . $this->_sXtcLangId . ' AND 
+					(cd.categories_meta_keywords != "" OR cd.categories_meta_description != ""))';
+
+			$oxDB->Execute($sQ);
+			$error = $oxDB->ErrorMsg();
+			if ('importSEOCategories --' . $error) {
+				printLine($error);
+			}
+		}
 	}
 
 	/**
@@ -672,7 +712,7 @@ class ImportHandler {
 			oxexturl, 
 			' . $xtcReplaceFields[0] . '
 			oxsoldamount,
-			' . $xtcReplaceFields[0] . '
+			' . $xtcReplaceFields[1] . '
 			oxmanufacturerid
 			' .$this->_sInclField . '
         )
@@ -701,7 +741,7 @@ class ImportHandler {
         WHERE 
 			p.products_id = pd.products_id AND 
 			language_id = ' . $this->_sXtcLangId . ')';
-		
+
 		$oxDB->Execute($sQ);
 		$error = $oxDB->ErrorMsg();
 		if ($error) {
@@ -1073,15 +1113,18 @@ class XtImportHandler extends ImportHandler {
 	protected $_sManufacturerImagePath = '/';
 
 	/**
-	 * Aditionally import meta keywords, search words, short description, EAN, images, scale prices, crossselling products
+	 * Aditionally import meta keywords, search words, short description, 
+	 * EAN, images, scale prices, crossselling products
+	 * 
+	 * @param boolean $shopSystem If is true, we import from xtc
 	 *
 	 */
-	public function importProducts() {
+	public function importProducts($shopSystem) {
 		$sOcmDb = $this->_sOcmDb;
 		$iLangCount = $this->_iLangCount;
 		$sShopId = $this->_sShopId;
 
-		parent::importProducts();
+		parent::importProducts($shopSystem);
 
 		//Importing search keywords
 		for ($i = 1; $i <= $iLangCount; $i++) {
@@ -1150,13 +1193,14 @@ class XtImportHandler extends ImportHandler {
 
 	/**
 	 * Additionally imports category description
+	 * @param boolean $shopSystem If is true, we import from xtc
 	 */
-	public function importCategories() {
+	public function importCategories($shopSystem) {
 		$sOcmDb = $this->_sOcmDb;
 		$iLangCount = $this->_iLangCount;
 		$sShopId = $this->_sShopId;
 
-		parent::importCategories();
+		parent::importCategories($shopSystem);
 
 		//Importing category description
 		for ($i = 1; $i <= $iLangCount; $i++) {
